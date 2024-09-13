@@ -1,0 +1,124 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+::root {
+    --title: "Cormorant SC";
+    --corps: "Trirong";
+    --petit-corps: "Roboto", sans-serif;
+}  
+
+
+body {
+    /* background-color: #111927; */
+    background-color: #4E1511;
+
+    main {
+        
+        h1 {
+            font-family: var(--title);
+            margin: 2rem;
+            font-weight: 700;
+            font-size: 52px;
+        }
+
+        .container {
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .title-movie {
+            font-family: var(--petit-corps);
+            cursor: pointer;
+        }
+        
+        .left-section {
+                background-color: #e4a496;
+                border: 5px solid #AC4D39;
+                width: 40%;
+                margin: auto;
+                height: 475px;
+                text-align: center;
+                border-radius: 20px;
+                padding: 1rem;
+                overflow-y: scroll;
+        }
+        
+
+        .right-section {
+            width: 40%;
+            height: 475px;
+            margin: auto;
+            border: 5px solid #AC4D39;
+            background-color: #e4a496;
+            border-radius: 20px;
+            padding: 1rem;
+            color: #000000;
+            font-weight: 700;
+
+            .vignette {
+                font-family: var(--corps);
+                width: 100%;
+                padding: 1rem;
+                display: flex;
+                justify-content: space-between;
+
+                .image {
+                    width: 30%;
+                    
+                    img {
+                        width: 100%;
+                    }
+                }
+
+                .infos {
+                    width: 60%;
+
+                        h3 {
+                            padding: 10px;
+                        }
+                        
+                        #titre {
+                            font-family: var(--petit-corps);
+                        }
+
+                        .synopsis {
+                            font-family: "Roboto";
+                            text-align: justify;
+                        }
+                }
+                    
+            }
+
+            .boutons {
+                padding: 1rem;
+                width: 100%;
+
+                button {
+                    color: white;
+                    font-weight: 800;
+                    width: 30%;
+                    height: 40px;
+                    background-color: #4E1511;
+                    border: 3px solid white ;
+                    border-radius: 20px;
+                    cursor: pointer;
+                }
+
+                button:hover {
+                    background-color: #FFF8F7;
+                    border: #4E1511 3px solid;
+                    color: #000000;
+                }
+            }
+
+        }
+    }
+    h1 {
+        color: #FFF8F7;
+    }
+}

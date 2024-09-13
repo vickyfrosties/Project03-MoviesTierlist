@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tierlist des films</title>
+  <link rel="stylesheet" href="./styles/global.css">
+  <!-- les polices -->
+ 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Trirong:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <script src="./scripts/main.js" defer></script>
+  <!-- defer créer toute la hiérarchie/le dom pour dire de lire dabord le html puis de lire le script -->
+</head>
+<body>
+  <main>
+    <h1>Tierlist des films</h1>
+
+    <section class="container">
+
+      <div class="left-section" id="left-container">
+        <a id="link" href="javascript:displayMovie('66e03c23cec92b2642706c15')"></a>
+      </div>
+
+      <div class="right-section">
+        <div class="vignette" id="vignette">
+
+          <div class="image">
+            <img id="affiche" src="" alt="">
+          </div>
+
+          <div class="infos">
+            <h3 id="titre">Titre : </h3>
+            <h3 id="real">Réalisateur : </h3>
+            <h3 id="year">Année : </h3>
+            <h3 id="timing">Durée :</h3>
+            <h3 id="casting">Casting : </h3>
+
+            <div class="synopsis">
+            <p id="synopsis"></p>
+            </div>
+          </div>
+          
+        </div>
+  
+        <div class="boutons">
+          <button id="add">Ajouter</button>
+          <button id="delete">Supprimer</button>
+          <button id="edit">Modifier</button>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+</body>
+</html>
