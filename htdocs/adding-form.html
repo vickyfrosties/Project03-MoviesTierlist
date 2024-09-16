@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies Tierlist</title>
+    <link rel="stylesheet" href="./styles/form.css">
+</head>
+<body>
+    <main>
+
+        <h1><a href="./index.html">Movie's Tierlist</a></h1>
+
+        <section class="container-form">
+            <form action="/movies" method="POST" id="addMovieForm">
+                <div class="section-form">
+                    <div class="left">
+                        <label for="Series_Title">Title</label>
+                        <input type="text" name="Series_Title" id="Series_Title" required pattern="^[a-z0-9_-]{3,15}$">
+                  
+                        <label for="Year">Year</label>
+                        <input type="text" name="year" id="year">  
+                
+                        <label for="Genre">Genre</label>
+                        <!-- <select name="Genre" id="Genre">
+                        <option selected value="">Choose the genre</option>
+                        <option value="SF - Fantastic">SF - Fantastic</option>
+                        <option value="Action">Action</option>
+                        <option value="Horror - Thriller">Horror - Thriller</option>
+                        <option value="Comedy">Comedy</option>
+                        </select> -->
+                
+                        <input type="text" name="Genre" id="Genre">
+                        <label for="Director">Director</label>
+                        <input type="text" name="Director" id="Director">
+                 
+                        <label for="Poster_Link">Poster</label>
+                        <input type="text" name="Poster_Link" id="Poster_Link">
+                 
+                    </div>
+                    
+                    <div class="right">
+                        <label for="Star1">Cast</label>
+                        <input type="text" name="Star1" id="Star1">
+                  
+                        <label for="IMDB_Rating">IMDB Rating</label>
+                        <input type="text" name="IMDB_Rating" id="IMDB_Rating">
+                
+                        <label for="Runtime">Runtime</label>
+                        <input type="text" name="Runtime" id="Runtime">
+                        
+                        <label for="Gross">Gross</label>
+                        <input type="text" name="Gross" id="Gross">
+                    </div>
+                    
+                </div>
+
+                <button id="add_movie">ADD</button>
+            </form>
+
+        </section>
+    </main>
+</body>
+</html>

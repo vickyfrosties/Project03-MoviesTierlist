@@ -11,11 +11,10 @@ app.listen(8000, function() {
     console.log('Server is running and listening on port 8000');
    });
 
-   // pour dire dans quel répertoire se trouvent les fichiers à lire
 app.use("/", express.static(__dirname + "/htdocs"));
+app.use(express.urlencoded({extended:false}));
 
 
-// pour le test : http://localhost:8000/movies
 app.get('/movies', function(request, response) {
     findAllMovies().then(function(movies){
         response.setHeader('Content-Type', 'application/json');
@@ -23,7 +22,6 @@ app.get('/movies', function(request, response) {
     });
 });
 
-// pour le test : http://localhost:8000/movie/66e045c78482ccc436c7316e
 app.get('/movie/:id', function(request, response) {
     findMovieFromId(request.params.id).then(function(movie){
         response.setHeader('Content-Type', 'application/json');
@@ -31,24 +29,52 @@ app.get('/movie/:id', function(request, response) {
     });
 });
 
-// traitement de la route DELETE /movie/id (D de DELETE dans CRUD)
-// pour le test : http://localhost:8000/movie/66e045c78482ccc436c7316e
+
 app.delete('/movie/:id', function(request, response) {
     deleteMovieFromId(request.params.id).then(function(){
         response.setHeader('Content-Type', 'application/json');
-        response.send("Object deleted");
+        response.send("Movie deleted");
     });
 });
+
+app.post('/movies', function(request, response) {
+    addMovie(request.body).then(function(){
+        response.setHeader('Content-Type', 'application/json');
+        response.send("Movie created");
+    });
+});
+
+async function addMovie(body) {
+    let newMovie = {
+        Series_Title: body.Series_Title,
+        Released_Year: body.Released_Year,
+        Genre: body.Genre,
+        Director: body.Director,
+        Poster_Link: body.Poster_Link,
+        Star1: body.Star1,
+        IMDB_Rating: body.IMDB_Rating,
+        Runtime: body.Runtime,
+        Gross: body.Gross
+    }
+
+    try {
+        await mongoClient.connect();
+        const imdbDatabase = mongoClient.db("imdb");
+        const movieCollection = imdbDatabase.collection("movies");
+        const result = await movieCollection.insertOne(newMovie);
+    }
+    catch (error) { console.error(error); }
+}
 
 async function findMovieFromId(movieId) {
     try {
         await mongoClient.connect();
-        const imdbDatabase = mongoClient.db("IMDB");
+        const imdbDatabase = mongoClient.db("imdb");
         const movieCollection = imdbDatabase.collection("movies");
         const options = {
-            projection: { },  // projection : on garde tout
+            projection: { },
             };
-        const query = {_id : new ObjectId(movieId)};    // requête de sélection
+        const query = {_id : new ObjectId(movieId)}; 
         const movie = await movieCollection.find(query, options).toArray();
         return movie[0];
     }
@@ -59,7 +85,7 @@ async function findMovieFromId(movieId) {
 async function findAllMovies() {
     try {
         await mongoClient.connect();
-        const imdbDatabase = mongoClient.db("IMDB");
+        const imdbDatabase = mongoClient.db("imdb");
         const movieCollection = imdbDatabase.collection("movies");
         const movies = await movieCollection.find().toArray();
         return movies;
@@ -67,13 +93,13 @@ async function findAllMovies() {
     catch (error) { console.error(error); }
    }
 
-   async function deleteMovieFromId(movieId) {
-    try {
-        await mongoClient.connect();
-        const imdbDatabase = mongoClient.db("IMDB");
-        const movieCollection = imdbDatabase.collection("movies");
-        const query = {_id : new ObjectId(movieId)};    // requête de sélection
-        const movie = await movieCollection.deleteOne(query);
-    }
-    catch (error) { console.error(error); }
-   }
+async function deleteMovieFromId(movieId) {
+try {
+    await mongoClient.connect();
+    const imdbDatabase = mongoClient.db("imdb");
+    const movieCollection = imdbDatabase.collection("movies");
+    const query = {_id : new ObjectId(movieId)};
+    const response = await movieCollection.deleteOne(query);
+}
+catch (error) { console.error(error); }
+}
